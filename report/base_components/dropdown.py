@@ -11,7 +11,7 @@ class Dropdown(BaseComponent):
 
     def build_component(self, entity_id, model):
         options = []
-        
+
         for text, value in self.component_data(entity_id, model):
             kwargs = dict(value=value)
             if str(value) == str(entity_id):
