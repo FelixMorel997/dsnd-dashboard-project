@@ -11,20 +11,17 @@ class Dropdown(BaseComponent):
 
     def build_component(self, entity_id, model):
         options = []
+        
         for text, value in self.component_data(entity_id, model):
-            option = Option(
-                text,
-                value=value,
-                selected="selected" if str(value) == entity_id else None
-                )
+            kwargs = dict(value=value)
+            if str(value) == str(entity_id):
+                kwargs['selected'] = "selected"
+            option = Option(text, **kwargs)
             options.append(option)
 
         dropdown_settings = {
             'name': self.name
-            }
-
-        # if model.name:
-        #     dropdown_settings['disabled'] = 'disabled'
+        }
 
         selector = Select(
             *options,
